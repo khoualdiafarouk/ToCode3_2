@@ -1,0 +1,33 @@
+
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:localhost" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:localhost">
+<types>
+<xsd:schema targetNamespace="urn:localhost"
+>
+ <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+ <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+</xsd:schema>
+</types>
+<message name="ConvertEURtoTNDRequest">
+  <part name="value" type="xsd:float" /></message>
+<message name="ConvertEURtoTNDResponse">
+  <part name="return" type="xsd:float" /></message>
+<portType name="ConvertEURtoTNDPortType">
+  <operation name="ConvertEURtoTND">
+    <input message="tns:ConvertEURtoTNDRequest"/>
+    <output message="tns:ConvertEURtoTNDResponse"/>
+  </operation>
+</portType>
+<binding name="ConvertEURtoTNDBinding" type="tns:ConvertEURtoTNDPortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="ConvertEURtoTND">
+    <soap:operation soapAction="urn:localhost#ConvertEURtoTND" style="rpc"/>
+    <input><soap:body use="encoded" namespace="urn:localhost" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="urn:localhost" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+</binding>
+<service name="ConvertEURtoTND">
+  <port name="ConvertEURtoTNDPort" binding="tns:ConvertEURtoTNDBinding">
+    <soap:address location="http://localhost/nusoap-0.9.5/webservice.php"/>
+  </port>
+</service>
+</definitions>
